@@ -1,0 +1,2 @@
+lazy loading git expamle: https://github.com/funOfheuristic/lazyLoading
+lazy loading youtube video: https://www.youtube.com/watch?v=hkaa2mnqOI8

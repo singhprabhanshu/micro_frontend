@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://www.ganatan.com/tutorials/lazy-loading-with-angular -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Lazy loading with Angular CLI and Router</title>
+  <!--<base href="/">--><base href=".">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="https://www.ganatan.com/favicon.ico">
+  <link rel="manifest" href="https://www.ganatan.com/manifest.webmanifest">
+  <meta name="theme-color" content="#1976d2">
+
+  <link rel="apple-touch-icon" type="image/png" href="https://www.ganatan.com/assets/icons/icon-72x72.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="72x72" href="https://www.ganatan.com/assets/icons/icon-72x72.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="96x96" href="https://www.ganatan.com/assets/icons/icon-96x96.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="128x128" href="https://www.ganatan.com/assets/icons/icon-128x128.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="144x144" href="https://www.ganatan.com/assets/icons/icon-144x144.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://www.ganatan.com/assets/icons/icon-152x152.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="https://www.ganatan.com/assets/icons/icon-192x192.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="384x384" href="https://www.ganatan.com/assets/icons/icon-384x384.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="512x512" href="https://www.ganatan.com/assets/icons/icon-512x512.png">
+
+  <meta property="og:title" content="Ganatan : un guide Angular pour développer une Application Web">
+  <meta property="og:site_name" content="Ganatan : Angular Guide et Tutoriels">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.ganatan.com/">
+  <meta property="og:description" content="Une liste de tutoriels pour pouvoir écrire une application Angular">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="dannyganatan@gmail.com">
+  <meta name="twitter:title" content="Ganatan : Angular Guide et Tutoriels">
+  <meta name="twitter:description" content="Une liste de tutoriels pour pouvoir écrire une application Angular">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/javascript" async="" src="./Lazy loading with Angular CLI and Router_files/analytics.js.download"></script><script async="" src="./Lazy loading with Angular CLI and Router_files/js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-135732895-1'); 
+  </script>
+
+<link rel="stylesheet" href="./Lazy loading with Angular CLI and Router_files/styles.38e85486e9d146d9e679.css"><meta name="description" content="Configure the lazy loading in our Application"><link rel="canonical" href="https://www.ganatan.com/tutorials/undefined"><link rel="alternate" href="https://www.ganatan.com/tutorials/undefined" hreflang="x-default"><link rel="alternate" href="https://www.ganatan.com/tutorials/undefined" hreflang="fr"><link rel="alternate" href="https://www.ganatan.com/tutorials/undefined" hreflang="en"><style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><style></style><script type="text/javascript" src="./Lazy loading with Angular CLI and Router_files/index.min.js.download"></script><script charset="utf-8" src="./Lazy loading with Angular CLI and Router_files/0-es2015.5cc2e00548e2a5fe5742.js.download"></script><script charset="utf-8" src="./Lazy loading with Angular CLI and Router_files/1-es2015.a9122d6f5719d7fe00e5.js.download"></script><script charset="utf-8" src="./Lazy loading with Angular CLI and Router_files/common-es2015.6ea84eec6f6ecec19125.js.download"></script><script charset="utf-8" src="./Lazy loading with Angular CLI and Router_files/4-es2015.423ea9044f2885e2d788.js.download"></script><style>main{font-size:1.2em}h1{font-size:2em}h1,h2{font-weight:700}h2{font-size:1.5em}h3{font-size:1.17em}h4{font-size:1.12em}h5{font-size:.83em}h6{font-size:.75em}.dateCreate,.dateUpdate{font-size:.8em;color:grey}.ellipsis{text-overflow:ellipsis;overflow:hidden}.dashboardtutorials .nav-item{width:100%}.dashboardtutorials a{font-size:.9rem;line-height:1.1rem;padding:0 5px;margin-top:3px;margin-bottom:3px;color:grey}.dashboardtutorials li .activetutorial{font-weight:600;color:#4285f4}.dashboardtutorials li .info{font-weight:600;color:#000}.editerror{font-size:.9rem;font-weight:500;color:red}code[class*=language-],pre[class*=language-]{color:#000;background:none;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{position:relative;margin:.5em 0;overflow:visible;padding:0}pre[class*=language-]>code{position:relative;border-left:10px solid #358ccb;box-shadow:-1px 0 0 0 #358ccb,0 0 0 1px #dfdfdf;background-color:#fdfdfd;background-image:linear-gradient(transparent 50%,rgba(69,142,209,.04) 0);background-size:3em 3em;background-origin:content-box;background-attachment:local}code[class*=language]{max-height:inherit;height:inherit;padding:0 1em;display:block;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background-color:#fdfdfd;box-sizing:border-box;margin-bottom:1em}:not(pre)>code[class*=language-]{position:relative;padding:.2em;border-radius:.3em;color:#c92c2c;border:1px solid rgba(0,0,0,.1);display:inline;white-space:normal}pre[class*=language-]:after,pre[class*=language-]:before{content:"";z-index:-2;display:block;position:absolute;bottom:.75em;left:.18em;width:40%;height:20%;max-height:13em;box-shadow:0 13px 8px #979797;transform:rotate(-2deg)}:not(pre)>code[class*=language-]:after,pre[class*=language-]:after{right:.75em;left:auto;transform:rotate(2deg)}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#7d8b99}.token.punctuation{color:#5f6364}.token.boolean,.token.constant,.token.deleted,.token.function-name,.token.number,.token.property,.token.symbol,.token.tag{color:#c92c2c}.token.attr-name,.token.builtin,.token.char,.token.function,.token.inserted,.token.selector,.token.string{color:#2f9c0a}.token.entity,.token.operator,.token.url,.token.variable{color:#a67f59;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.class-name,.token.keyword{color:#1990b8}.token.important,.token.regex{color:#e90}.language-css .token.string,.style .token.string{color:#a67f59;background:hsla(0,0%,100%,.5)}.token.important{font-weight:400}.token.bold{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.namespace{opacity:.7}@media screen and (max-width:767px){pre[class*=language-]:after,pre[class*=language-]:before{bottom:14px;box-shadow:none}}.token.cr:before,.token.lf:before,.token.tab:not(:empty):before{color:#e0d7d1}pre[class*=language-].line-numbers.line-numbers{padding-left:0}pre[class*=language-].line-numbers.line-numbers code{padding-left:3.8em}pre[class*=language-].line-numbers.line-numbers .line-numbers-rows{left:0}pre[class*=language-][data-line]{padding-top:0;padding-bottom:0;padding-left:0}pre[data-line] code{position:relative;padding-left:4em}pre .line-highlight{margin-top:0}</style><link rel="canonical" href="https://www.ganatan.com/tutorials/undefined"><link rel="alternate" href="https://www.ganatan.com/tutorials/undefined" hreflang="x-default"><link rel="alternate" href="https://www.ganatan.com/tutorials/undefined" hreflang="fr"><link rel="alternate" href="https://www.ganatan.com/tutorials/undefined" hreflang="en"></head>
+
+<body aria-busy="true">
+  <app-root _nghost-sc20="" ng-version="9.1.9" _nghost-angular-starter-c11=""><div _ngcontent-angular-starter-c11="" class="hidden-sn animated"><app-header _ngcontent-angular-starter-c11="" _nghost-angular-starter-c9=""><header _ngcontent-angular-starter-c9=""><nav _ngcontent-angular-starter-c9="" class="navbar fixed-top navbar-expand-lg scrolling-navbar navbar-dark elegant-color-dark top-nav-collapse"><div _ngcontent-angular-starter-c9="" class="container"><a _ngcontent-angular-starter-c9="" alt="Accueil" class="navbar-brand" href="https://www.ganatan.com/en"><img _ngcontent-angular-starter-c9="" src="./Lazy loading with Angular CLI and Router_files/ganatan.png" width="24" height="24" alt="Logo Ganatan"><strong _ngcontent-angular-starter-c9="" class="font-weight-bold ml-2">ganatan</strong></a><button _ngcontent-angular-starter-c9="" type="button" data-toggle="collapse" data-target="#navbarHome" aria-controls="navbarHome" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span _ngcontent-angular-starter-c9="" class="navbar-toggler-icon"></span></button><div _ngcontent-angular-starter-c9="" id="navbarHome" class="collapse navbar-collapse"><ul _ngcontent-angular-starter-c9="" class="navbar-nav ml-auto"><li _ngcontent-angular-starter-c9="" class="nav-item"><a _ngcontent-angular-starter-c9="" class="nav-link waves-effect waves-light dark-text" href="https://www.ganatan.com/tutorials/en"><i _ngcontent-angular-starter-c9="" class="fas fa-chalkboard-teacher"></i><span _ngcontent-angular-starter-c9="" class="font-weight-bold ml-1">Tutorials</span></a></li><li _ngcontent-angular-starter-c9="" class="nav-item"><a _ngcontent-angular-starter-c9="" routerlink="/demo" class="nav-link waves-effect waves-light dark-text" href="https://www.ganatan.com/demo"><i _ngcontent-angular-starter-c9="" class="fas fa-laptop"></i><span _ngcontent-angular-starter-c9="" class="font-weight-bold ml-1">Demo</span></a></li><li _ngcontent-angular-starter-c9="" class="nav-item"><a _ngcontent-angular-starter-c9="" routerlink="/faq" class="nav-link waves-effect waves-light dark-text" href="https://www.ganatan.com/faq"><i _ngcontent-angular-starter-c9="" class="fab fa-rebel"></i><span _ngcontent-angular-starter-c9="" class="font-weight-bold ml-1">Faq</span></a></li><li _ngcontent-angular-starter-c9="" class="nav-item mr-4"><a _ngcontent-angular-starter-c9="" routerlink="/about" class="nav-link waves-effect waves-light dark-text" href="https://www.ganatan.com/about"><i _ngcontent-angular-starter-c9="" class="far fa-question-circle"></i><span _ngcontent-angular-starter-c9="" class="font-weight-bold ml-1">About</span></a></li></ul><ul _ngcontent-angular-starter-c9="" class="navbar-nav ml-auto"><li _ngcontent-angular-starter-c9="" class="nav-item"><a _ngcontent-angular-starter-c9="" routerlink="/login" class="nav-link waves-effect waves-light dark-text font-weight-bold" href="https://www.ganatan.com/login"><i _ngcontent-angular-starter-c9="" class="fas fa-sign-in-alt mr-2"></i><span _ngcontent-angular-starter-c9="" class="white-text">Login</span></a></li><li _ngcontent-angular-starter-c9="" class="nav-item mr-4"><a _ngcontent-angular-starter-c9="" routerlink="/signup" class="btn btn-blue btn-rounded btn-sm waves-effect waves-light" href="https://www.ganatan.com/signup"><span _ngcontent-angular-starter-c9="" class="font-weight-bold white-text"><i _ngcontent-angular-starter-c9="" class="fas fa-user-plus mr-2"></i> Sign Up</span></a></li></ul><!----><!----><ul _ngcontent-angular-starter-c9="" class="navbar-nav nav-flex-icons"><li _ngcontent-angular-starter-c9="" class="nav-item"><a _ngcontent-angular-starter-c9="" href="https://github.com/ganatan" class="nav-link waves-effect"><i _ngcontent-angular-starter-c9="" class="fab fa-github"></i><span _ngcontent-angular-starter-c9="" class="font-weight-bold ml-2">Github</span></a></li></ul></div></div></nav></header></app-header><main _ngcontent-angular-starter-c11="" class="pt-5"><router-outlet _ngcontent-angular-starter-c11=""></router-outlet><app-item-form><!----><div><!----><!----><div class="container pt-4"><div class="row d-flex justify-content-center"><div class="col-md-9"><div class="col text-center blue-text pt-2"><h1>Lazy loading with Angular 9</h1></div><div class="text-center col-md-12 dateCreate pt-4"><i data-toggle="tooltip" data-placement="top" title="Dernière modification" class="fas fa-edit mr-2"></i>14/05/20 <i class="fas fa-user-edit ml-2 mr-2"></i><a class="blue-text mr-4" href="https://www.ganatan.com/about/en">danny</a><a class="ml-4" href="https://www.ganatan.com/tutorials/lazy-loading-avec-angular"><img src="./Lazy loading with Angular CLI and Router_files/fr-24-24.png" alt="Version Française"></a><!----></div></div></div></div><!----><div><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><hr><!----><h2 class="h2 pb-2 blue-text text-center" id="what"> What are we going to do ? </h2><!----><!----><div><p>We will implement the <span style="color:#000000"><strong>Lazy loading</strong></span><span style="color:#ff0000"><strong> </strong></span>in our Web Application.<br>
+We will use the <span style="color:#000000"><strong>Angular version 9.1.7</strong></span><span style="color:#ff0000"><strong>&nbsp;</strong></span>javascript framework.<br>
+<br>
+This is <strong>Step 3 </strong>of our &nbsp;<a href="https://www.ganatan.com/tutorials/en">Angular guide</a>&nbsp;which will allow us to obtain a <strong>PWA&nbsp;Web Application</strong>.<br>
+We will use an existing project whose characteristics are</p>
+
+<ul>
+	<li>Managed with Angular CLI</li>
+	<li>Routing</li>
+</ul>
+
+<p><span style="color:#000000"><em>All created sources are indicated at the end of the tutorial.</em></span></p>
+
+<p><strong>The application </strong>is at the following address</p>
+
+<ul>
+	<li><a href="https://angular.ganatan.com/">https://angular.ganatan.com</a></li>
+</ul>
+</div></div></div></div><!----><!----><!----><!----><!----></div><div><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><hr><!----><h2 class="h2 pb-2 blue-text text-center" id="before-start">  Before you start </h2><!----><!----><div><p>The speed at which a website is displayed is one of the most important criteria for the user.<br>
+And this speed is appreciated in seconds.<br>
+Beyond 3 seconds, 57% of users leave the site altogether.<br>
+<br>
+What methods or techniques should we use to make our website load quickly?<br>
+<br>
+One of the techniques is the <strong>lazy loading.</strong><br>
+It has the effect of speeding up the operation of a website.<br>
+It allows you to specify which parts of a website should be loaded at startup.</p>
+</div></div></div></div><!----><!----><!----><!----><!----></div><div><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><hr><!----><h2 class="h2 pb-2 blue-text text-center" id="theory"> Theory </h2><!----><!----><div><p>Before going further we need to understand how Angular works.<br>
+The command that interests us concerns the <strong>compilation </strong>of our project.<br>
+<br>
+In our <strong>package.json </strong>file it is the command</p>
+
+<ul>
+	<li><strong>ng build</strong></li>
+</ul>
+
+<p>Without going into details this command uses <strong>Webpack </strong>(a bundler module).<br>
+With <strong>Webpack </strong>angular uses the files of our project,&nbsp;<strong>compiles </strong>them to generate in the dist directory a number of files that we can deploy on a web server.<br>
+<br>
+The project uses 5 web pages</p>
+
+<ul>
+	<li><strong>Home</strong></li>
+	<li><strong>About</strong></li>
+	<li><strong>Contact</strong></li>
+	<li><strong>Signin</strong></li>
+	<li><strong>notfound</strong></li>
+</ul>
+
+<p>The compilation of our source code generates two files :&nbsp;<strong>main-es5.js</strong> and <strong>main-es2015.js</strong>&nbsp;that contain the code of these 5&nbsp;pages.<br>
+To check this theory just open the file <strong>dist/angular-starter/ main-es5.js,&nbsp;</strong>search the code used in each of the 5&nbsp;pages</p>
+
+<ul>
+	<li><strong>home works! </strong>(code used in home.component.html)</li>
+	<li><strong>not-found works! </strong>(code used in not-found.component.html)</li>
+	<li><strong>contact works!&nbsp;</strong>(code used in contact.component.html)</li>
+	<li><strong>signin works!&nbsp;</strong>(code used in signin.component.html)</li>
+	<li><strong>about works! </strong>(code used in about.component.html)</li>
+</ul>
+
+<p>These and other files will be called when viewing the website.<br>
+The larger the number of pages, the larger the file and the slower the display.<br>
+<br>
+The principle of <strong>lazy loading </strong>will consist in splitting this file in <strong>several parts</strong> which will be loaded only in due time.<br>
+<br>
+<br>
+So let's move on to practice.</p>
+</div></div></div></div><!----><!----><!----><!----><!----></div><div><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><hr><!----><h2 class="h2 pb-2 blue-text text-center" id="pratique"> Practice </h2><!----><!----><div><p>The lazy loading works by using the notion of modules and not that of components.<br>
+<br>
+We will use the Angular documentation to apply this technique.<br>
+<a href="https://angular.io/guide/lazy-loading-ngmodules">https://angular.io/guide/lazy-loading-ngmodules</a><br>
+<br>
+We will adapt our architecture, creating a module for each element to display.<br>
+Home and not-found will continue to be managed conventionally as components.<br>
+<br>
+<br>
+Let us use the command <strong>ng generate module </strong>that we offer angular-cli.</p>
+</div></div></div></div><!----><!----><!----><!----><!----></div><div><!----><!----><!----><div><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><div class="docs-pills-cde"><prism-block><pre class="  language-git"><code class="  language-git"><span class="token comment"># Creating modules</span>
+ng generate module modules/general/contact --routing  --module=app
+ng generate module modules/general/signin --routing  --module=app
+ng generate module modules/general/about --routing  --module=app
+
+<span class="token comment"># Creating modules (method 2)</span>
+ng g m modules/general/contact --routing  --module=app
+ng g m modules/general/signin --routing  --module=app
+ng g m modules/general/about --routing  --module=app
+</code></pre></prism-block></div></div></div></div><!----></div><!----><!----><!----></div><div><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><!----><!----><!----><div><p>The files needed for each component are created automatically.<br>
+<br>
+For example for the Home component</p>
+
+<ul>
+	<li><strong>home-routing.module.ts</strong></li>
+	<li><strong>home.module.ts</strong></li>
+</ul>
+
+<p>The <strong>app.module.ts </strong>file is automatically modified as follows.</p>
+</div></div></div></div><!----><!----><!----><!----><!----></div><div><!----><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><div class="docs-pills ellipsis"><div class="d-flex justify-content-between"><div class="blue-text d-flex justify-content-between mt-2 mb-2 ml-4"><span><strong>src/app/app.module.ts</strong></span><br></div></div><div><prism-block><pre class="  language-typescript"><code class="  language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> BrowserModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/platform-browser'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> NgModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AppComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./app.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> HomeComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./modules/general/home/home.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ContactComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./modules/general/contact/contact.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AboutComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./modules/general/about/about.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> NotFoundComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./modules/general/not-found/not-found.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AppRoutingModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./app-routing.module'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ContactModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./modules/general/contact/contact.module'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AboutModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./modules/general/about/about.module'</span><span class="token punctuation">;</span>
+
+@<span class="token function">NgModule</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  declarations<span class="token operator">:</span> <span class="token punctuation">[</span>
+    AppComponent<span class="token punctuation">,</span>
+    HomeComponent<span class="token punctuation">,</span>
+    ContactComponent<span class="token punctuation">,</span>
+    AboutComponent<span class="token punctuation">,</span>
+    NotFoundComponent
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>
+    BrowserModule<span class="token punctuation">,</span>
+    AppRoutingModule<span class="token punctuation">,</span>
+    ContactModule<span class="token punctuation">,</span>
+    AboutModule
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  providers<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  bootstrap<span class="token operator">:</span> <span class="token punctuation">[</span>AppComponent<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AppModule</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+</code></pre></prism-block></div></div></div></div></div><!----><!----><!----><!----></div><div><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><!----><!----><!----><div><p>We need to make some changes to the following files.</p>
+
+<ul>
+	<li><strong>app-routing.module.ts</strong></li>
+	<li><strong>app.module.ts</strong></li>
+	<li><strong>about-routing.module.ts</strong></li>
+	<li><strong>about.module.ts</strong></li>
+	<li><strong>contact-routing.module.ts</strong></li>
+	<li><strong>contact.module.ts</strong></li>
+</ul>
+
+<p>The lazy loading will be applied on <strong>Contact </strong>and <strong>About</strong><br>
+At the level of AppRoutingModule, we need to update the routes using <strong>loadchildren</strong>.</p>
+</div></div></div></div><!----><!----><!----><!----><!----></div><div><!----><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><div class="docs-pills ellipsis"><div class="d-flex justify-content-between"><div class="blue-text d-flex justify-content-between mt-2 mb-2 ml-4"><span><strong>src/app/app-routing.module.ts</strong></span><br></div></div><div><prism-block><pre class="  language-typescript"><code class="  language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> NgModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Routes<span class="token punctuation">,</span> RouterModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/router'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> HomeComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./modules/general/home/home.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> NotFoundComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./modules/general/not-found/not-found.component'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> routes<span class="token operator">:</span> Routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> path<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span> component<span class="token operator">:</span> HomeComponent<span class="token punctuation">,</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'about'</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">loadChildren</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'./modules/general/about/about.module'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">mod</span> <span class="token operator">=&gt;</span> mod<span class="token punctuation">.</span>AboutModule<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'contact'</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">loadChildren</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'./modules/general/contact/contact.module'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">mod</span> <span class="token operator">=&gt;</span> mod<span class="token punctuation">.</span>ContactModule<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">'signin'</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">loadChildren</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'./modules/general/signin/signin.module'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">mod</span> <span class="token operator">=&gt;</span> mod<span class="token punctuation">.</span>SigninModule<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> path<span class="token operator">:</span> <span class="token string">'**'</span><span class="token punctuation">,</span> component<span class="token operator">:</span> NotFoundComponent <span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+@<span class="token function">NgModule</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>RouterModule<span class="token punctuation">.</span><span class="token function">forRoot</span><span class="token punctuation">(</span>routes<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  exports<span class="token operator">:</span> <span class="token punctuation">[</span>RouterModule<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  declarations<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AppRoutingModule</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span></code></pre></prism-block></div></div></div></div></div><!----><!----><!----><!----></div><div><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><!----><!----><!----><div><p><br>
+We need to modify the AppModule module and leave only the components HomeComponent and NotFoundComponent</p>
+</div></div></div></div><!----><!----><!----><!----><!----></div><div><!----><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><div class="docs-pills ellipsis"><div class="d-flex justify-content-between"><div class="blue-text d-flex justify-content-between mt-2 mb-2 ml-4"><span><strong>src/app/app.module.ts</strong></span><br></div></div><div><prism-block><pre class="  language-typescript"><code class="  language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> BrowserModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/platform-browser'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> NgModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AppComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./app.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> HomeComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./modules/general/home/home.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> NotFoundComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./modules/general/not-found/not-found.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AppRoutingModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./app-routing.module'</span><span class="token punctuation">;</span>
+
+@<span class="token function">NgModule</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  declarations<span class="token operator">:</span> <span class="token punctuation">[</span>
+    AppComponent<span class="token punctuation">,</span>
+    HomeComponent<span class="token punctuation">,</span>
+    NotFoundComponent
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>
+    BrowserModule<span class="token punctuation">,</span>
+    AppRoutingModule<span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  providers<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  bootstrap<span class="token operator">:</span> <span class="token punctuation">[</span>AppComponent<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AppModule</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+</code></pre></prism-block></div></div></div></div></div><!----><!----><!----><!----></div><div><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><!----><!----><!----><div><p><br>
+All that remains is to modify the routing and module files for Contact, Signin and About.</p>
+</div></div></div></div><!----><!----><!----><!----><!----></div><div><!----><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><div class="docs-pills ellipsis"><div class="d-flex justify-content-between"><div class="blue-text d-flex justify-content-between mt-2 mb-2 ml-4"><span><strong>src/app/modules/general/about/about-routing.module.ts</strong></span><br></div></div><div><prism-block><pre class="  language-typescript"><code class="  language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> NgModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Routes<span class="token punctuation">,</span> RouterModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/router'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AboutComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./about.component'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> routes<span class="token operator">:</span> Routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> path<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span> component<span class="token operator">:</span> AboutComponent <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+@<span class="token function">NgModule</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>RouterModule<span class="token punctuation">.</span><span class="token function">forChild</span><span class="token punctuation">(</span>routes<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  exports<span class="token operator">:</span> <span class="token punctuation">[</span>RouterModule<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AboutRoutingModule</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+</code></pre></prism-block></div></div></div></div></div><!----><!----><!----><!----></div><div><!----><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><div class="docs-pills ellipsis"><div class="d-flex justify-content-between"><div class="blue-text d-flex justify-content-between mt-2 mb-2 ml-4"><span><strong>src/app/modules/general/about/about.module.ts</strong></span><br></div></div><div><prism-block><pre class="  language-typescript"><code class="  language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> NgModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> CommonModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/common'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AboutComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./about.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AboutRoutingModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./about-routing.module'</span><span class="token punctuation">;</span>
+
+@<span class="token function">NgModule</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>
+    CommonModule<span class="token punctuation">,</span>
+    AboutRoutingModule
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  exports<span class="token operator">:</span> <span class="token punctuation">[</span>
+    AboutComponent
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  declarations<span class="token operator">:</span> <span class="token punctuation">[</span>
+    AboutComponent
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  providers<span class="token operator">:</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AboutModule</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+</code></pre></prism-block></div></div></div></div></div><!----><!----><!----><!----></div><div><!----><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><div class="docs-pills ellipsis"><div class="d-flex justify-content-between"><div class="blue-text d-flex justify-content-between mt-2 mb-2 ml-4"><span><strong>src/app/modules/general/contact/contact-routing.module.ts</strong></span><br></div></div><div><prism-block><pre class="  language-typescript"><code class="  language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> NgModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Routes<span class="token punctuation">,</span> RouterModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/router'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ContactComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./contact.component'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> routes<span class="token operator">:</span> Routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> path<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span> component<span class="token operator">:</span> ContactComponent <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+@<span class="token function">NgModule</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>RouterModule<span class="token punctuation">.</span><span class="token function">forChild</span><span class="token punctuation">(</span>routes<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  exports<span class="token operator">:</span> <span class="token punctuation">[</span>RouterModule<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ContactRoutingModule</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+</code></pre></prism-block></div></div></div></div></div><!----><!----><!----><!----></div><div><!----><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><div class="docs-pills ellipsis"><div class="d-flex justify-content-between"><div class="blue-text d-flex justify-content-between mt-2 mb-2 ml-4"><span><strong>src/app/modules/general/contact/contact.module.ts</strong></span><br></div></div><div><prism-block><pre class="  language-typescript"><code class="  language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> NgModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> CommonModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/common'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ContactComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./contact.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ContactRoutingModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./contact-routing.module'</span><span class="token punctuation">;</span>
+
+@<span class="token function">NgModule</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>
+    CommonModule<span class="token punctuation">,</span>
+    ContactRoutingModule
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  exports<span class="token operator">:</span> <span class="token punctuation">[</span>
+    ContactComponent
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  declarations<span class="token operator">:</span> <span class="token punctuation">[</span>
+    ContactComponent
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  providers<span class="token operator">:</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ContactModule</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+</code></pre></prism-block></div></div></div></div></div><!----><!----><!----><!----></div><div><!----><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><div class="docs-pills ellipsis"><div class="d-flex justify-content-between"><div class="blue-text d-flex justify-content-between mt-2 mb-2 ml-4"><span><strong>src/app/modules/general/signin/signin-routing.module.ts</strong></span><br></div></div><div><prism-block><pre class="  language-typescript"><code class="  language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> NgModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Routes<span class="token punctuation">,</span> RouterModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/router'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> SigninComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./signin.component'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> routes<span class="token operator">:</span> Routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> path<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span> component<span class="token operator">:</span> SigninComponent <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+@<span class="token function">NgModule</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>RouterModule<span class="token punctuation">.</span><span class="token function">forChild</span><span class="token punctuation">(</span>routes<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  exports<span class="token operator">:</span> <span class="token punctuation">[</span>RouterModule<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">SigninRoutingModule</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+</code></pre></prism-block></div></div></div></div></div><!----><!----><!----><!----></div><div><!----><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><div class="docs-pills ellipsis"><div class="d-flex justify-content-between"><div class="blue-text d-flex justify-content-between mt-2 mb-2 ml-4"><span><strong>src/app/modules/general/signin/signin.module.ts</strong></span><br></div></div><div><prism-block><pre class="  language-typescript"><code class="  language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> NgModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> CommonModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/common'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> SigninComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./signin.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> SigninRoutingModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./signin-routing.module'</span><span class="token punctuation">;</span>
+
+@<span class="token function">NgModule</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>
+    CommonModule<span class="token punctuation">,</span>
+    SigninRoutingModule
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  exports<span class="token operator">:</span> <span class="token punctuation">[</span>
+    SigninComponent
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  declarations<span class="token operator">:</span> <span class="token punctuation">[</span>
+    SigninComponent
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  providers<span class="token operator">:</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">SigninModule</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+</code></pre></prism-block></div></div></div></div></div><!----><!----><!----><!----></div><div><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><hr><!----><h2 class="h2 pb-2 blue-text text-center" id="verification"> Vérification </h2><!----><!----><div><p>To check the theory of lazy loading we need to perform a new compilation (npm run build)<br>
+<br>
+In the dist/angular-starter&nbsp; directory we get this 4&nbsp;files</p>
+
+<ul>
+	<li><strong>main.js</strong></li>
+	<li><strong>modules-general-about-about-module.js</strong></li>
+	<li><strong>modules-general-contact-contact-module.js</strong></li>
+	<li><strong>modules-general-signin-signin-module.js</strong></li>
+</ul>
+
+<p>The code of each of our 4 pages is now arranged as follows.</p>
+
+<ul>
+	<li><strong>home works! </strong>(code found in&nbsp;<strong>main.js</strong>)</li>
+	<li><strong>not-found works! </strong>(code found in&nbsp;<strong>main.js</strong>)</li>
+</ul>
+
+<ul>
+	<li><strong>contact works!&nbsp;</strong>(code found in&nbsp;<strong>modules-general-contact-contact-module.js</strong>)</li>
+	<li><strong>signin works!&nbsp;</strong>(code found in&nbsp;<strong>modules-general-signin-signin-module.js</strong>)</li>
+	<li><strong>about works! </strong>(code used in&nbsp;<strong>modules-general-about-about-module.js</strong>)</li>
+</ul>
+
+<p>If we run the application (npm run start) we can see in Chrome (F12) on the Network tab how the files are loaded.</p>
+
+<ul>
+	<li>At the launch of the site: main.js is called.</li>
+	<li>At selection of About: modules-general-about-about-module.js is called only once</li>
+	<li>At selection of Signin: modules-general-signin-signin-module.js is called only once</li>
+	<li>To the selection of Contact: modules-general-contact-contact-module.js is called only once</li>
+</ul>
+
+<p>If we launch the url localhost / contact</p>
+
+<ul>
+	<li>In this case main.js and only modules-general-contact-contact-module.js are called</li>
+</ul>
+
+<p><br>
+Conclusion :&nbsp;<br>
+Regardless of the number of pages, the main.js file will always be the same size.<br>
+Launching the site that loads the main.js file will always be at the same speed.&nbsp;</p>
+</div></div></div></div><!----><!----><!----><!----><!----></div><div><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><hr><!----><h2 class="h2 pb-2 blue-text text-center" id="test"> Tests </h2><!----><!----><div><p>All that remains is to test the application.</p>
+</div></div></div></div><!----><!----><!----><!----><!----></div><div><!----><!----><!----><div><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><div class="docs-pills-cde"><prism-block><pre class="  language-git"><code class="  language-git"><span class="token comment"># Development</span>
+npm run start
+http://localhost:4200/
+
+<span class="token comment"># Tests</span>
+npm run lint
+npm run test
+npm run e2e
+
+<span class="token comment"># Production</span>
+npm run build</code></pre></prism-block></div></div></div></div><!----></div><!----><!----><!----></div><div><!----><div class="container pt-4"><div class="row d-flex justify-content-center ellipsis"><div class="col-md-9"><hr><!----><h2 class="h2 pb-2 blue-text text-center" id="source-code"> Source code  </h2><!----><!----><div><p>The <strong>source code used at the beginning of the tutorial </strong>is available on github<br>
+<u><a href="https://github.com/ganatan/angular-example-routing">https://github.com/ganatan/angular-example-routing</a></u></p>
+
+<p><br>
+The <strong>source code obtained at the end </strong>of this tutorial is available on github<br>
+<u><a href="https://github.com/ganatan/angular-example-lazy-loading">https://github.com/ganatan/angular-example-lazy-loading</a></u></p>
+
+<p>&nbsp;</p>
+
+<p>The <strong>tutorials for obtaining the application </strong>are as follows</p>
+
+<ul>
+	<li><a href="https://www.ganatan.com/tutorials/getting-started-with-angular">Step 1 : Getting started with Angular</a><br>
+	&nbsp;</li>
+	<li><a href="https://www.ganatan.com/tutorials/routing-with-angular">Step 2 : Routing with Angular</a><br>
+	&nbsp;</li>
+	<li><a href="https://www.ganatan.com/tutorials/lazy-loading-with-angular">Step 3&nbsp;: Lazy loading with Angular</a>&nbsp;<br>
+	&nbsp;</li>
+	<li><a href="https://www.ganatan.com/tutorials/bootstrap-with-angular">Step 4 : Bootstrap with Angular</a><br>
+	&nbsp;</li>
+	<li><a href="https://www.ganatan.com/tutorials/server-side-rendering-with-angular-universal">Step&nbsp;5 : Server Side Rendering with Angular</a><br>
+	&nbsp;</li>
+	<li><a href="https://www.ganatan.com/tutorials/httpclient-with-angular">Step&nbsp;6 : HttpClient with Angular</a><br>
+	&nbsp;</li>
+	<li><a href="https://www.ganatan.com/tutorials/transfer-state-with-angular">Step&nbsp;7 : Transfer State with Angular</a><br>
+	&nbsp;</li>
+	<li><a href="https://www.ganatan.com/tutorials/progressive-web-app-with-angular">Step&nbsp;8 : Progressive Web App with Angular</a><br>
+	&nbsp;</li>
+	<li><a href="https://www.ganatan.com/tutorials/search-engine-optimization-with-angular">Step&nbsp;9 : Search Engine Optimization with Angular</a></li>
+</ul>
+
+<ul>
+	<li><a href="https://www.ganatan.com/tutorials/build-full-web-application-with-angular">Step&nbsp;10 : Build a Full Web application with Angular</a></li>
+</ul>
+
+<p><br>
+<em>The <strong>source code of the application </strong>is available on github</em><br>
+<a href="https://github.com/ganatan/angular9-app">https://github.com/ganatan/angular9-app</a></p>
+</div></div></div></div><!----><!----><!----><!----><!----></div><!----><div class="container-fluid blue-gradient pt-4 pb-4"><div class="container pt-4 pb-4"><div class="row d-flex justify-content-center"><div class="col-md-10"><div class="card p-4"><h2 class="h3 pb-2 text-success text-center"> Comment créer une application From scratch ? </h2><div class="row"><div class="col-lg-8 col-md-12 pb-4"><h3 class="h6 title pt-4 text-center"> Créez votre compte ganatan </h3><h3 class="h6 mb-4 title pt-1 text-center"> Téléchargez gratuitement vos 4 guides complets <div class="h6 pt-3 grey-text">Démarrez avec angular CLI <i aria-hidden="true" class="ml-2 green-text fas fa-file-pdf left right"></i></div><div class="h6 grey-text">Gérez le routing <i aria-hidden="true" class="ml-2 green-text fas fa-file-pdf left right"></i></div><div class="h6 grey-text">Appliquez le Lazy loading <i aria-hidden="true" class="ml-2 green-text fas fa-file-pdf left right"></i></div><div class="h6 grey-text">Intégrez Bootstrap <i aria-hidden="true" class="ml-2 green-text fas fa-file-pdf left right"></i></div></h3><div class="text-center w-responsive mx-auto"><a class="btn success-color btn-rounded white-text font-weight-bold"> Je crée mon compte et télécharge mes guides<i class="d-none d-xl-inline-block fas fas fa-download ml-2"></i></a></div></div><div class="col-lg-4 ml-auto col-md-12 pb-4"><img src="./Lazy loading with Angular CLI and Router_files/quest-ce-que-ganatan.png" alt="Ganatan site Web avec Angular" class="z-depth-0 img-fluid"></div></div></div></div></div></div></div><!----></div><div><app-modal-ebook _nghost-angular-starter-c39=""><div _ngcontent-angular-starter-c39="" id="modalEbook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade"><div _ngcontent-angular-starter-c39="" role="document" class="modal-dialog modal-notify modal-lg"><div _ngcontent-angular-starter-c39="" class="modal-content"><div _ngcontent-angular-starter-c39="" class="modal-body"><div _ngcontent-angular-starter-c39=""><button _ngcontent-angular-starter-c39="" type="button" data-dismiss="modal" aria-label="Close" class="close"><span _ngcontent-angular-starter-c39="" aria-hidden="true" class="black-text">×</span></button></div><br _ngcontent-angular-starter-c39=""><div _ngcontent-angular-starter-c39="" class="text-center" style="font-size: 20px;"><p _ngcontent-angular-starter-c39="">Entrez votre email pour recevoir </p><p _ngcontent-angular-starter-c39="" style="font-size: 32px;"><strong _ngcontent-angular-starter-c39="">"Lazy loading with Angular 9"</strong></p><div _ngcontent-angular-starter-c39="" class="row d-flex justify-content-center"><div _ngcontent-angular-starter-c39="" class="col-md-8"><div _ngcontent-angular-starter-c39="" class="md-form"><input _ngcontent-angular-starter-c39="" type="email" id="emailebook" class="form-control ng-untouched ng-pristine ng-valid"><label _ngcontent-angular-starter-c39="" for="email">Email</label></div><!----></div></div><div _ngcontent-angular-starter-c39="" class="row d-flex justify-content-center"><div _ngcontent-angular-starter-c39="" class="col-md-8"><button _ngcontent-angular-starter-c39="" type="button" class="btn success-color text-white"><!----><span _ngcontent-angular-starter-c39="" class="text-white ml-4">Je reçois mon Guide Angular</span></button></div></div><div _ngcontent-angular-starter-c39="" class="row d-flex justify-content-center"><div _ngcontent-angular-starter-c39="" class="col-md-10"><br _ngcontent-angular-starter-c39=""><p _ngcontent-angular-starter-c39="" style="font-size: 13px;"><strong _ngcontent-angular-starter-c39="">Vous pouvez vous désinscrire en 1 clic depuis n'importe lequel de mes emails</strong></p></div></div></div></div></div></div></div></app-modal-ebook></div><!----></app-item-form><!----></main><!----></div></app-root>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+<script src="./Lazy loading with Angular CLI and Router_files/runtime-es2015.9375f69220756c04e40e.js.download" type="module"></script><script src="./Lazy loading with Angular CLI and Router_files/runtime-es5.9375f69220756c04e40e.js.download" nomodule="" defer=""></script><script src="./Lazy loading with Angular CLI and Router_files/polyfills-es5.f3c5265eef15cc1cbf26.js.download" nomodule="" defer=""></script><script src="./Lazy loading with Angular CLI and Router_files/polyfills-es2015.6bb82ef03f5f089eddfb.js.download" type="module"></script><script src="./Lazy loading with Angular CLI and Router_files/scripts.7fd6aed4f88d164cb7d6.js.download" defer=""></script><script src="./Lazy loading with Angular CLI and Router_files/main-es2015.2b628dc5b0962283dae9.js.download" type="module"></script><script src="./Lazy loading with Angular CLI and Router_files/main-es5.2b628dc5b0962283dae9.js.download" nomodule="" defer=""></script>
+
+<script id="angular-starter-state" type="application/json">{}</script><div class="hiddendiv common"></div></body></html>
